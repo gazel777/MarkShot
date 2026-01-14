@@ -48,9 +48,9 @@ MarkShotは、DaVinci Resolveのタイムライン上に配置したマーカー
 - 青マーカー → クライアント確認用
 - 緑マーカー → 完成カット
 
-### 4. Data Burn-in対応
+### 4. データ焼き付け対応
 
-DaVinci Resolveで設定したData Burn-in（タイムコード、クリップ名など）を画像に焼き込んで書き出せます。
+DaVinci Resolveで設定したデータ焼き付け（タイムコード、クリップ名など）を画像に焼き込んで書き出せます。
 
 | 設定 | 出力結果 |
 |------|----------|
@@ -60,8 +60,6 @@ DaVinci Resolveで設定したData Burn-in（タイムコード、クリップ�
 **活用例**:
 - ON → 編集確認用、クライアントレビュー用
 - OFF → サムネイル作成用、納品用
-
-**無料版での動作**: Data Burn-inは自動的にGallery方式（OFF相当）にフォールバックするため、エラーなく動作します。
 
 ### 5. タイムコード付きファイル名
 
@@ -94,7 +92,7 @@ MyProject_00_05_12_08.jpg
 |------|---------|--------|
 | スクリプトメニューから実行 | ✅ | ❌ |
 | 設定ダイアログ (UIManager) | ✅ | ❌ |
-| Data Burn-in | ✅ | ✅（自動フォールバック） |
+| データ焼き付け | ✅ | ✅ |
 | マーカー色フィルタ | ✅ | ❌（デフォルト: All） |
 | ファイル形式選択 | ✅ | ❌（デフォルト: JPEG） |
 | Gallery経由の書き出し | ✅ | ✅ |
@@ -116,7 +114,7 @@ MyProject_00_05_12_08.jpg
 4. 設定ダイアログで選択
    - ファイル形式（JPEG/PNG/TIFF）
    - マーカー色（All/特定色）
-   - Data Burn-in（ON/OFF）
+   - データ焼き付け（ON/OFF）
          ↓
 5. 保存先フォルダを選択
          ↓
@@ -161,7 +159,7 @@ MyProject_00_05_12_08.jpg
 └─────────────────────────────────┘
 ```
 
-**注意**: v1.3.0よりData Burn-inのデフォルトはOFFに変更されました。
+**注意**: v1.3.1よりデータ焼き付けのデフォルトはONに変更されました。
 
 ---
 
@@ -231,12 +229,12 @@ MyProject_00_05_12_08.jpg
 
 ### 編集確認
 - 修正ポイントにマーカーを配置
-- Data Burn-in ONで書き出し（Studio版）
+- データ焼き付けONで書き出し
 - タイムコード付きでクライアントに共有
 
 ### サムネイル作成
 - 見せ場にマーカーを配置
-- Data Burn-in OFFで書き出し
+- データ焼き付けOFFで書き出し
 - クリーンな画像をYouTube等に使用
 
 ### カット表作成
@@ -270,8 +268,8 @@ resolve = DaVinciResolveScript.scriptapp("Resolve")
 
 | 方式 | 使用API | 対応版 |
 |------|---------|--------|
-| Data Burn-in ON | `project.ExportCurrentFrameAsStill()` | Studio版のみ |
-| Data Burn-in OFF | `timeline.GrabStill()` + `album.ExportStills()` | 両方 |
+| データ焼き付け ON | `project.ExportCurrentFrameAsStill()` | 両方 |
+| データ焼き付け OFF | `timeline.GrabStill()` + `album.ExportStills()` | 両方 |
 
 ---
 
@@ -280,7 +278,7 @@ resolve = DaVinciResolveScript.scriptapp("Resolve")
 - **タイムラインマーカーのみ対応**（クリップマーカーは非対応）
 - **バックグラウンド実行不可**（処理中はDaVinci Resolveを操作できません）
 - **解像度**: 現在のタイムライン/ビューア設定に依存
-- **無料版**: 設定ダイアログ・Data Burn-in・色フィルタは使用不可
+- **無料版**: 設定ダイアログ・色フィルタは使用不可（デフォルト設定で動作）
 
 ---
 

@@ -19,10 +19,9 @@
 
 ### 🔧 改善
 
-#### Data Burn-in 自動フォールバック
+#### データ焼き付け デフォルトON
 - デフォルト設定を**ON**に変更
-- 無料版で`ExportCurrentFrameAsStill`が失敗した場合、自動的にGallery方式にフォールバック
-- Studio版/無料版どちらでも同じ設定でシームレスに動作
+- Studio版/無料版どちらでも同じ設定で動作
 
 ---
 
@@ -62,7 +61,7 @@
 |------|---------|--------|
 | スクリプトメニュー | ✅ | ❌ |
 | UIManager（設定ダイアログ）| ✅ | ❌ |
-| Data Burn-in | ✅ | ✅（自動フォールバック） |
+| データ焼き付け | ✅ | ✅ |
 | app.GetResolve() | ✅ | ✅ |
 | timeline.GrabStill() | ✅ | ✅ |
 | album.ExportStills() | ✅ | ✅ |
@@ -73,9 +72,9 @@
 
 ### ✨ 新機能
 
-#### Data Burn-in対応
+#### データ焼き付け対応
 - 設定ダイアログに「Include Data Burn-in」チェックボックスを追加
-- DaVinciで設定したData Burn-in（タイムコード等）を画像に焼き込んで書き出し可能
+- DaVinciで設定したデータ焼き付け（タイムコード等）を画像に焼き込んで書き出し可能
 - `ExportCurrentFrameAsStill` APIを使用（新方式）
 - チェックOFF時は従来のGallery経由の書き出し（クリーンな画像）
 
