@@ -183,4 +183,4 @@ MIT License
 
 ## 作者
 
-ヒロ / One Frame Studio
+Hiro / FrameTools
