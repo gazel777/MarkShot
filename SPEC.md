@@ -1,9 +1,9 @@
 # MarkShot 仕様書
 ## DaVinci Resolve マーカーフレーム自動書き出しツール
 
-**バージョン**: 1.3.2
+**バージョン**: 1.3.3
 **対応環境**: DaVinci Resolve 17.4以降（macOS / Windows）
-**開発**: One Frame Studio
+**開発**: Hiro / FrameTools
 
 ---
 
