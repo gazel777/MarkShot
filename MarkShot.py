@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # MarkShot.py
 # DaVinci Resolve Marker Frame Export Tool
-# v1.3.2 - Fixed timecode: now uses actual timeline TC instead of calculated TC
+# v1.3.3 - Auto-numbering for duplicate filenames (-2, -3, etc.)
 
 import os
 import glob
@@ -10,7 +10,7 @@ import subprocess
 import platform
 
 print("=" * 60)
-print("MarkShot - Marker Frame Export Tool v1.3.2")
+print("MarkShot - Marker Frame Export Tool v1.3.3")
 print("=" * 60)
 
 # Try to get Resolve using multiple methods
@@ -361,8 +361,14 @@ for i, (frame_id, marker_info) in enumerate(sorted(filtered_markers.items()), 1)
 
         if use_burnin:
             # Export directly with Data Burn-in
-            file_name = f"{file_prefix}{tc_label}.{file_ext}"
-            file_path = os.path.join(output_dir, file_name)
+            base_name = f"{file_prefix}{tc_label}"
+            file_path = os.path.join(output_dir, f"{base_name}.{file_ext}")
+            # If file exists, add suffix -2, -3, etc.
+            if os.path.exists(file_path):
+                counter = 2
+                while os.path.exists(os.path.join(output_dir, f"{base_name}-{counter}.{file_ext}")):
+                    counter += 1
+                file_path = os.path.join(output_dir, f"{base_name}-{counter}.{file_ext}")
             result = project.ExportCurrentFrameAsStill(file_path)
 
             if result:
@@ -444,10 +450,15 @@ if not use_burnin and exported_stills:
     auto_files_sorted = sorted(auto_files)
     if len(auto_files_sorted) == len(timecodes):
         for src_file, tc_label in zip(auto_files_sorted, timecodes):
-            dst_file = os.path.join(output_dir, f"{file_prefix}{tc_label}.{file_ext}")
+            base_name = f"{file_prefix}{tc_label}"
+            dst_file = os.path.join(output_dir, f"{base_name}.{file_ext}")
+            # If file exists, add suffix -2, -3, etc.
+            if os.path.exists(dst_file):
+                counter = 2
+                while os.path.exists(os.path.join(output_dir, f"{base_name}-{counter}.{file_ext}")):
+                    counter += 1
+                dst_file = os.path.join(output_dir, f"{base_name}-{counter}.{file_ext}")
             try:
-                if os.path.exists(dst_file):
-                    os.remove(dst_file)
                 os.rename(src_file, dst_file)
                 print(f"  Renamed: {os.path.basename(src_file)} -> {os.path.basename(dst_file)}")
             except Exception as e:

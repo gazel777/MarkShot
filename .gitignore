@@ -20,3 +20,6 @@ __pycache__/
 
 # Compiled apps in dist_light
 dist_light/*.app/
+
+# Windows EXE files (distribute via GitHub Releases instead)
+*.exe
