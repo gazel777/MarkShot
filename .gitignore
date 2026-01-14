@@ -1,0 +1,22 @@
+# Build artifacts
+build/
+dist/
+release/
+*.spec
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+
+# Old installers
+*.zip
+
+# DMG files (distribute via GitHub Releases instead)
+*.dmg
+
+# Compiled apps in dist_light
+dist_light/*.app/
