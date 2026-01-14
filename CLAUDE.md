@@ -66,6 +66,14 @@ cp "c:/AI-Tools/MarkShot/MarkShot.py" "$APPDATA/Blackmagic Design/DaVinci Resolv
 - リリース時のみ
 - ユーザーが明示的に要求した時
 
+### インストーラーのファイル名規則
+
+**必ずバージョン番号を含める:**
+- Windows: `MarkShotInstaller_v1.3.3.exe`, `MarkShotUninstaller_v1.3.3.exe`
+- macOS: `MarkShotInstaller_v1.3.3.dmg` など
+
+バージョンなしの名前（`MarkShotInstaller.exe`）は禁止。
+
 ## バージョン更新時の変更箇所
 
 1. `VERSION.txt` - Single Source of Truth

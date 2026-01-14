@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # MarkShot Installer for Windows
-# Version 1.3.2
+# Version 1.3.3
 
-VERSION = "1.3.2"
+VERSION = "1.3.3"
 
 import os
 import sys

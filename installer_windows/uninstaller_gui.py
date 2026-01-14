@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # MarkShot Uninstaller for Windows
-# Version 1.3.2
+# Version 1.3.3
 
-VERSION = "1.3.2"
+VERSION = "1.3.3"
 
 import os
 import tkinter as tk
