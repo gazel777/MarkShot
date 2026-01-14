@@ -74,6 +74,19 @@ cp "c:/AI-Tools/MarkShot/MarkShot.py" "$APPDATA/Blackmagic Design/DaVinci Resolv
 
 バージョンなしの名前（`MarkShotInstaller.exe`）は禁止。
 
+## ドキュメント編集時のルール
+
+以下のファイルを編集する前に `git pull` で最新を取得すること:
+- `README.md`
+- `CHANGELOG.md`
+- `SPEC.md`
+- `VERSION.txt`
+- `CLAUDE.md`
+
+編集後は `git push` でGitHubに反映。
+
+---
+
 ## バージョン更新時の変更箇所
 
 1. `VERSION.txt` - Single Source of Truth
