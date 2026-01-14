@@ -24,14 +24,13 @@ DaVinci Resolveのタイムライン上のマーカー位置から、フレー�
 
 | 機能 | Studio版 | 無料版 |
 |------|---------|--------|
-| スクリプトメニューから実行 | ✅ | ❌ |
+| スクリプトメニューから実行 | ✅ | ✅ |
 | 設定ダイアログ (UIManager) | ✅ | ❌ |
 | データ焼き付け | ✅ | ✅ |
 | Gallery経由の書き出し | ✅ | ✅ |
 
 **無料版での注意点:**
 - 設定ダイアログは表示されません（デフォルト設定で動作）
-- Fusionコンソールから実行する必要があります
 
 ---
 
@@ -118,18 +117,9 @@ DaVinci Resolveのタイムライン上のマーカー位置から、フレー�
 
 1. DaVinci Resolveを起動し、プロジェクトとタイムラインを開く
 2. タイムライン上にマーカーを追加（ショートカット: `M`）
-3. **Fusionページ**を開く
-4. `Workspace` → `Console` を開く
-5. 以下を入力して実行：
-   ```python
-   exec(open('C:/Users/[ユーザー名]/AppData/Roaming/Blackmagic Design/DaVinci Resolve/Fusion/Scripts/Utility/MarkShot.py').read())
-   ```
-   **macOSの場合:**
-   ```python
-   exec(open('/Users/[ユーザー名]/Library/Application Support/Blackmagic Design/DaVinci Resolve/Fusion/Scripts/Utility/MarkShot.py').read())
-   ```
-6. 保存先フォルダを選択
-7. 処理完了後、フォルダが自動で開きます
+3. メニューから `Workspace` → `Scripts` → `MarkShot` を選択
+4. 保存先フォルダを選択
+5. 処理完了後、フォルダが自動で開きます
 
 **注意**: 無料版では設定ダイアログが表示されないため、デフォルト設定（JPEG、全マーカー、データ焼き付けON）で動作します。
 
