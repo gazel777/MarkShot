@@ -99,3 +99,61 @@ cp "c:/AI-Tools/MarkShot/MarkShot.py" "$APPDATA/Blackmagic Design/DaVinci Resolv
 8. `uninstaller_gui.py` VERSION変数
 9. `version_info_installer.txt` filevers/prodvers
 10. `version_info_uninstaller.txt` filevers/prodvers
+
+---
+
+## 開発フロー（GitHub Issues/PR）
+
+### バグ修正・機能追加の流れ
+
+```
+1. Issue作成（問題や要望を記録）
+2. ブランチ作成: git checkout -b fix/issue-番号
+3. 修正・実装
+4. コミット & プッシュ
+5. PR作成: gh pr create
+6. CodeRabbitが自動レビュー（日本語）
+7. 「マージして」→ mainに反映
+8. Issueに経緯をコメント → 自動クローズ（PRに Fixes #番号 を書く）
+```
+
+### 進捗管理
+
+- **ドキュメントは増やさない**
+- GitHub Issues/PR で全て管理
+- 経緯・履歴はIssueのコメントに記録
+
+### CodeRabbit連携
+
+- 設定ファイル: `.coderabbit.yaml`
+- 全PRを自動レビュー（日本語）
+- 手動レビュー依頼: PRコメントに `@coderabbitai review`
+
+---
+
+## Windowsテスト用インストーラー（友人向け）
+
+### 必要ファイル
+
+| ファイル | 用途 |
+|----------|------|
+| `MarkShot.py` | 本体スクリプト |
+| `install_test.bat` | インストーラー（batファイル） |
+
+### 友人の手順
+
+1. GitHubから `MarkShot.py` をダウンロード（Raw → 右クリック保存）
+2. `install_test.bat` も同様にダウンロード
+3. **両方を同じフォルダに置く**
+4. `install_test.bat` をダブルクリック
+5. DaVinci Resolve を起動（または再起動）
+6. Workspace → Scripts → Utility → MarkShot
+
+### エラー報告
+
+問題があれば `install_log.txt` を送ってもらう（診断情報が記録されている）
+
+### 注意
+
+- batファイルはMacで作成してOK（テキストファイルなので）
+- exeインストーラーはリリース時のみビルド
