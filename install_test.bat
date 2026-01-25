@@ -45,6 +45,9 @@ if not exist "%SOURCE%" (
 )
 echo Source file found: OK >> "%LOGFILE%"
 
+REM Log source file size
+for %%A in ("%SOURCE%") do echo Source file size: %%~zA bytes >> "%LOGFILE%"
+
 REM Create target folder if needed
 if not exist "%TARGET%" (
     echo Creating target folder... >> "%LOGFILE%"
@@ -68,12 +71,40 @@ if %ERRORLEVEL% EQU 0 (
     echo. >> "%LOGFILE%"
     echo [RESULT] SUCCESS >> "%LOGFILE%"
     echo Installed to: %TARGET%\MarkShot.py >> "%LOGFILE%"
+
+    REM Verify copied file exists
+    echo. >> "%LOGFILE%"
+    echo [Verification] >> "%LOGFILE%"
+    if exist "%TARGET%\MarkShot.py" (
+        echo File exists after copy: YES >> "%LOGFILE%"
+        for %%A in ("%TARGET%\MarkShot.py") do echo Installed file size: %%~zA bytes >> "%LOGFILE%"
+    ) else (
+        echo File exists after copy: NO >> "%LOGFILE%"
+        echo [WARNING] File copy reported success but file not found! >> "%LOGFILE%"
+    )
+
+    REM List all files in target folder
+    echo. >> "%LOGFILE%"
+    echo [Target Folder Contents] >> "%LOGFILE%"
+    dir "%TARGET%" /B >> "%LOGFILE%" 2>&1
+
     echo.
     echo [OK] MarkShot.py installed successfully!
     echo.
     echo Location: %TARGET%\MarkShot.py
     echo.
-    echo Next: Restart DaVinci Resolve and test.
+    echo ========================================
+    echo IMPORTANT: Check DaVinci Resolve Settings
+    echo ========================================
+    echo If MarkShot does not appear in Scripts menu:
+    echo.
+    echo 1. Open DaVinci Resolve
+    echo 2. Go to: Preferences ^> System ^> General
+    echo 3. Find: "Save folder for scripts"
+    echo 4. Set to: "Local"
+    echo 5. Restart DaVinci Resolve
+    echo ========================================
+    echo.
 ) else (
     echo. >> "%LOGFILE%"
     echo [RESULT] FAILED >> "%LOGFILE%"
@@ -84,6 +115,16 @@ if %ERRORLEVEL% EQU 0 (
 
 echo.
 echo ======================================== >> "%LOGFILE%"
+
+REM Add troubleshooting info to log
+echo. >> "%LOGFILE%"
+echo [Troubleshooting] >> "%LOGFILE%"
+echo If MarkShot does not appear in DaVinci Resolve: >> "%LOGFILE%"
+echo 1. Check Preferences ^> System ^> General >> "%LOGFILE%"
+echo 2. Set "Save folder for scripts" to "Local" >> "%LOGFILE%"
+echo 3. Restart DaVinci Resolve >> "%LOGFILE%"
+echo ======================================== >> "%LOGFILE%"
+
 echo Log saved: %LOGFILE%
 echo.
 pause
