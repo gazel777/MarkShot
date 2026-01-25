@@ -1,0 +1,22 @@
+# CodeRabbit Configuration
+# https://docs.coderabbit.ai/guides/configure-coderabbit
+
+language: ja
+
+reviews:
+  # 全てのPRを自動レビュー
+  auto_review:
+    enabled: true
+    # ドラフトPRもレビュー
+    drafts: false
+
+  # レビューコメントの言語
+  path_instructions:
+    - path: "**/*.py"
+      instructions: "Pythonコードのレビュー。DaVinci Resolve APIとの互換性に注意。"
+    - path: "**/*.bat"
+      instructions: "Windowsバッチファイルのレビュー。パスのエスケープとエラーハンドリングに注意。"
+
+chat:
+  # PRコメントでの会話を有効化
+  auto_reply: true
