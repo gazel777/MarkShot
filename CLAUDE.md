@@ -157,3 +157,52 @@ cp "c:/AI-Tools/MarkShot/MarkShot.py" "$APPDATA/Blackmagic Design/DaVinci Resolv
 
 - batファイルはMacで作成してOK（テキストファイルなので）
 - exeインストーラーはリリース時のみビルド
+
+---
+
+## Windows側 Claude Code 設定
+
+### 概要
+
+Mac側で設定したClaude Codeのグローバル設定（権限、除外ルール、カスタムコマンド等）をWindows側でも使えるようにする。
+
+### セットアップ方法
+
+```bash
+# 1. MarkShotリポジトリを同期
+cd c:/AI-Tools/MarkShot_GitHub
+git pull
+
+# 2. セットアップスクリプトを実行
+setup_claude_windows.bat
+```
+
+### 含まれる設定
+
+| ファイル/フォルダ | 内容 |
+|------------------|------|
+| `settings.json` | 権限設定（git, gh, npm等を許可、rm -rf等を禁止） |
+| `.claudeignore` | 除外ルール（node_modules, .env, 大きいファイル等） |
+| `.mcp.json` | MCP設定（Context7, Serena, Chrome DevTools, Playwright） |
+| `CLAUDE.md` | グローバルルール |
+| `commands/` | カスタムコマンド（/fix-issue, /create-pr 等） |
+| `skills/` | スキル（PDF処理等） |
+| `templates/` | CLAUDE.mdテンプレート |
+| `docs/` | プロンプトパターン、ワークフロー、セキュリティガイド |
+
+### 利用可能なカスタムコマンド
+
+| コマンド | 用途 |
+|----------|------|
+| `/fix-issue 番号` | GitHub Issueを修正 |
+| `/create-pr` | PRを作成 |
+| `/add-feature` | 新機能追加 |
+| `/review-code` | コードレビュー |
+| `/security-check` | セキュリティ監査 |
+| `/init-project` | プロジェクト初期化 |
+
+### 注意
+
+- `setup_claude_windows.bat` は初回のみ実行
+- 設定を更新したい場合は再度実行（上書きされる）
+- `claude_config/` フォルダに設定ファイルが格納されている

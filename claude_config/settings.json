@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(gh *)",
+      "Bash(npm run *)",
+      "Bash(pnpm *)",
+      "Bash(yarn *)",
+      "Bash(python *)",
+      "Bash(pip *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(del /s /q *)",
+      "Bash(rmdir /s /q *)",
+      "Edit(.env)",
+      "Edit(.env.local)",
+      "Edit(.env.production)",
+      "Write(.env)",
+      "Write(.env.local)",
+      "Write(.env.production)"
+    ]
+  }
+}

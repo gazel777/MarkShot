@@ -1,0 +1,63 @@
+# ===================================
+# グローバル .claudeignore
+# Mac/Windows 共通
+# ===================================
+
+# === 大きいファイル ===
+*.pdf
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.dmg
+*.exe
+*.msi
+
+# === ビルド成果物 ===
+node_modules/
+dist/
+build/
+.next/
+out/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# === OS生成ファイル ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === IDE/エディタ ===
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# === ログファイル ===
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === 機密ファイル（読み込み不要） ===
+.env
+.env.local
+.env.production
+*.pem
+*.key
+
+# === メディアファイル（大きい） ===
+*.mp4
+*.mov
+*.avi
+*.mp3
+*.wav
+*.psd
+*.ai
+
+# === パッケージロック（大きい） ===
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
