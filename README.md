@@ -1,63 +1,65 @@
 # MarkShot - DaVinci Resolve Marker Frame Export
 
-DaVinci Resolveのタイムライン上のマーカー位置から、フレームを自動書き出しするスクリプトです。
+A script that automatically exports frames from marker positions on your DaVinci Resolve timeline.
 
-**バージョン**: 1.3.3
+**Version**: 1.3.3
 
-## 機能
+> 🇯🇵 [日本語はこちら](README-JP.md)
 
-- タイムライン上の**すべてのマーカー**を自動検出
-- 各マーカー位置のフレームを**静止画**として書き出し
-- ファイル名に**タイムコード**を自動付与
-- **データ焼き付け対応** - DaVinciで設定したデータ焼き付け（タイムコード等）を画像に焼き込み可能
-- **DaVinci Resolve無料版対応** (v1.3.0〜)
-- **重複ファイル名の自動連番** - 同名ファイルがある場合は `-2`, `-3` を自動付与 (v1.3.3〜)
+## Features
 
-**Studio版のみ:**
-- 出力形式選択（JPEG/PNG/TIFF）
-- マーカー色でフィルタリング
+- Automatically detects **all markers** on the timeline
+- Exports each marker position as a **still image**
+- **Timecode in filenames** — automatically appended
+- **Data burn-in support** — bake in timecode, clip names, etc. set in DaVinci Resolve
+- **DaVinci Resolve Free version supported** (v1.3.0+)
+- **Duplicate filename handling** — auto-numbering with `-2`, `-3` when files already exist (v1.3.3+)
 
-## 必要要件
+**Studio only:**
+- Output format selection (JPEG / PNG / TIFF)
+- Marker color filtering
 
-- **DaVinci Resolve 17.4以降** (無料版/Studio版)
-- **macOS 10.15以降** または **Windows 10以降**
+## Requirements
 
----
-
-## 無料版 vs Studio版
-
-| 機能 | Studio版 | 無料版 |
-|------|---------|--------|
-| マーカー位置の静止画書き出し | ✅ | ✅ |
-| データ焼き付け | ✅ | ✅ |
-| 出力形式の選択 | JPEG/PNG/TIFF | JPEGのみ |
-| マーカー色フィルタ | ✅ | − |
-
-**無料版での注意点:**
-- 設定ダイアログは表示されません（デフォルト設定で動作）
+- **DaVinci Resolve 17.4+** (Free or Studio)
+- **macOS 10.15+** or **Windows 10+**
 
 ---
 
-## インストール
+## Free vs Studio
 
-### Windows（インストーラー使用）
+| Feature | Studio | Free |
+|---------|--------|------|
+| Export stills from marker positions | ✅ | ✅ |
+| Data burn-in | ✅ | ✅ |
+| Output format selection | JPEG/PNG/TIFF | JPEG only |
+| Marker color filter | ✅ | − |
 
-1. [Releases](../../releases)から `MarkShotInstaller_v1.3.3.exe` をダウンロード
-2. ダウンロードしたexeを実行
-3. 「Install」ボタンをクリック
-4. 完了
+**Note for Free version:**
+- No settings dialog — runs with default settings.
 
-### macOS（インストーラー使用）
+---
 
-1. [Releases](../../releases)から `MarkShot-v1.3.3-macOS.dmg` をダウンロード
-2. DMGをダブルクリックしてマウント
-3. `Install MarkShot.app` をダブルクリック
-4. 「Install」ボタンをクリック
-5. 完了
+## Installation
 
-### 手動インストール
+### Windows (Installer)
 
-`MarkShot.py` を以下のフォルダにコピー：
+1. Download `MarkShotInstaller_v1.3.3.exe` from [Releases](../../releases)
+2. Run the downloaded exe
+3. Click "Install"
+4. Done
+
+### macOS (Installer)
+
+1. Download `MarkShot-v1.3.3-macOS.dmg` from [Releases](../../releases)
+2. Double-click the DMG to mount
+3. Double-click `Install MarkShot.app`
+4. Click "Install"
+5. Done
+
+### Manual Install
+
+Copy `MarkShot.py` to:
 
 **Windows:**
 ```
@@ -71,119 +73,135 @@ DaVinci Resolveのタイムライン上のマーカー位置から、フレー�
 
 ---
 
-## アンインストール
+## Uninstall
 
 ### Windows
-- `MarkShotUninstaller.exe` を実行
+- Run `MarkShotUninstaller.exe`
 
 ### macOS
-- DMG内の `Uninstall MarkShot.app` を実行
+- Run `Uninstall MarkShot.app` from the DMG
 
-### 手動アンインストール
+### Manual Uninstall
 
-以下のファイルを削除：
+Delete the following file:
 
 **Windows:**
-1. エクスプローラーで以下を開く：
+1. Open in Explorer:
    ```
    %APPDATA%\Blackmagic Design\DaVinci Resolve\Fusion\Scripts\Utility
    ```
-2. `MarkShot.py` を削除
+2. Delete `MarkShot.py`
 
 **macOS:**
-1. Finderで `Shift + Command + G`（フォルダへ移動）
-2. 以下を入力：
+1. In Finder, press `Shift + Command + G` (Go to Folder)
+2. Enter:
    ```
    ~/Library/Application Support/Blackmagic Design/DaVinci Resolve/Fusion/Scripts/Utility
    ```
-3. `MarkShot.py` を削除
+3. Delete `MarkShot.py`
 
 ---
 
-## 使用方法
+## Usage
 
-### Studio版
+### Studio
 
-1. DaVinci Resolveを起動し、プロジェクトとタイムラインを開く
-2. タイムライン上にマーカーを追加（ショートカット: `M`）
-3. メニューから `Workspace` → `Scripts` → `MarkShot` を選択
-4. 設定ダイアログで以下を選択：
+1. Open DaVinci Resolve with a project and timeline
+2. Add markers on the timeline (shortcut: `M`)
+3. Go to `Workspace` → `Scripts` → `MarkShot`
+4. In the settings dialog, choose:
    - **File Format**: JPEG / PNG / TIFF
-   - **Marker Color**: All / 特定の色
-   - **Include Data Burn-in**: データ焼き付けを含めるかどうか
-5. 保存先フォルダを選択
-6. 処理完了後、フォルダが自動で開きます
+   - **Marker Color**: All / specific color
+   - **Include Data Burn-in**: whether to bake in timecode overlay
+5. Select an output folder
+6. When done, the folder opens automatically
 
-### 無料版
+### Free Version
 
-1. DaVinci Resolveを起動し、プロジェクトとタイムラインを開く
-2. タイムライン上にマーカーを追加（ショートカット: `M`）
-3. メニューから `Workspace` → `Scripts` → `MarkShot` を選択
-4. 保存先フォルダを選択
-5. 処理完了後、フォルダが自動で開きます
+1. Open DaVinci Resolve with a project and timeline
+2. Add markers on the timeline (shortcut: `M`)
+3. Go to `Workspace` → `Scripts` → `MarkShot`
+4. Select an output folder
+5. When done, the folder opens automatically
 
-**初回起動時の注意（無料版のみ）:**
-初回起動時に「Are you using Studio version?」の確認ダイアログが表示されます。「No」を選択してください。初回は書き出しが行われますが、静止画が正しくない場合があります。**2回目以降は正常に動作します**ので、もう一度スクリプトを実行してください。
+**First launch (Free version only):**
+On the first run, a dialog asks "Are you using Studio version?" — select "No". The first export may produce incorrect stills. **Run the script a second time** and it will work correctly from then on.
 
-**注意**: 無料版では設定ダイアログが表示されないため、デフォルト設定（JPEG、全マーカー、データ焼き付けON）で動作します。
-
----
-
-## データ焼き付けについて
-
-DaVinci Resolveで設定したデータ焼き付け（タイムコード、ファイル名など）を画像に焼き込めます。
-
-**設定方法:**
-1. DaVinci Resolveで `ワークスペース` → `データ焼き付け` を開く
-2. 表示したい情報を設定（タイムコード等）
-3. MarkShotを実行
-
-**Studio版:** ON/OFF選択可能（デフォルトON）
-**無料版:** 常にON
+**Note:** The Free version has no settings dialog — it uses default settings (JPEG, all markers, data burn-in ON).
 
 ---
 
-## 出力ファイル
+## Data Burn-in
 
-ファイル名形式：
+Bake in timecode, filenames, and other overlays set in DaVinci Resolve.
+
+**Setup:**
+1. In DaVinci Resolve, go to `Workspace` → `Data Burn-in`
+2. Configure what to display (timecode, etc.)
+3. Run MarkShot
+
+**Studio:** ON/OFF selectable (default: ON)
+**Free:** Always ON
+
+---
+
+## Output Files
+
+Filename format:
 ```
 [ProjectName]_[HH_MM_SS_FF].jpg
 ```
 
-例: `MyMovie_00_01_23_15.jpg`
+Example: `MyMovie_00_01_23_15.jpg`
 
 ---
 
-## トラブルシューティング
+## Troubleshooting
 
-### MarkShotが表示されない
+### MarkShot doesn't appear in the menu
 
-- DaVinci Resolveを再起動してください
-- ファイルが正しい場所にあるか確認してください
-- `Preferences` → `System` → `General` → 「外部スクリプトに使用」→「ローカル」に設定
+- Restart DaVinci Resolve
+- Verify the file is in the correct location
+- Go to `Preferences` → `System` → `General` → set "External scripting using" to "Local"
 
-### 「Cannot connect to DaVinci Resolve」エラー
+### "Cannot connect to DaVinci Resolve" error
 
-- DaVinci Resolveが起動しているか確認
-- Fusionページが開いているか確認（無料版の場合）
-- コンソールから正しく実行しているか確認
+- Make sure DaVinci Resolve is running
+- Open the Fusion page (Free version)
+- Verify you're running the script correctly from the console
 
-### 「開発元を確認できません」と表示される（macOS）
+### "Unidentified developer" warning (macOS)
 
-1. システム設定 → プライバシーとセキュリティ
-2. 「このまま開く」をクリック
+1. Go to System Settings → Privacy & Security
+2. Click "Open Anyway"
 
-### 画像が正しく書き出されない
+### Images not exporting correctly
 
-- タイムラインにマーカーがあるか確認
-- プロジェクトとタイムラインが開いているか確認
+- Confirm markers exist on the timeline
+- Make sure a project and timeline are open
 
 ---
 
-## ライセンス
+## Also by FrameTools
+
+### [S2S (Slice2Storyboard)](https://oneframestudio.net/s2s/en/) — Video → Storyboard in Seconds
+
+MarkShot extracts frames from markers you place. **S2S goes further** — drop any video and it automatically detects every cut, generating a complete storyboard.
+
+- **Automatic scene detection** — no manual markers needed
+- **Multiple export formats** — Excel, PDF, ZIP
+- **Layout options** — vertical/horizontal grids, multiple aspect ratios
+
+Great for studying film editing structure, building storyboards from reference footage, or extracting key frames at scale.
+
+**[Try S2S free → oneframestudio.net/s2s/en/](https://oneframestudio.net/s2s/en/)**
+
+---
+
+## License
 
 MIT License
 
-## 作者
+## Author
 
 Hiro / FrameTools
